@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" prefix="op: http://media.facebook.com/op#">
+<head>
+  <meta charset="utf-8">
+  <meta property="op:markup_version" content="v1.0">
+  <link rel="canonical" href="{{ current_page.url }}" />
+  {% if meta.iastylename %}
+  	<meta property="fb:article_style" content="{{ meta.iastylename }}">
+  {% endif %}
+  <meta property="op:markup_version" content="v1.0">
+</head>
+
+<body>
+<article>
+	<header>
+		<!-- The title and subtitle shown in your Instant Article -->
+		<h1>{{ current_page.title }}</h1>
+		{% if meta.iasubtitle %}
+			<h2>{{ meta.iasubtitle }}</h2>
+		{% endif %}
+
+		<!-- The date and time when your article was originally published -->
+		<time class="op-published" datetime="2014-11-11T04:44:16Z">November 11th, 4:44 PM</time>
+
+		<!-- The date and time when your article was last updated -->
+		<time class="op-modified" dateTime="2014-12-11T04:44:16Z">December 11th, 4:44 PM</time>
+
+		<!-- The authors of your article -->
+		<address>
+			<a>{{ meta.iaauthor }}</a>
+		</address>
+
+		<!-- The cover image shown inside your article -->
+		{% if meta.iacoverimage %}
+		<figure>
+			<img src="{{ meta.iacoverimage }}" />
+		</figure>
+		{% endif %}
+
+		<!-- A kicker for your article --> 
+		{% if meta.iakicker %}
+			<h3 class="op-kicker">{{ meta.iakicker }}</h3>
+		{% endif %}
+
+	</header>
+
+	<!-- Article body goes here -->
+	<!-- Body text for article -->
+	{{ content }}
+
+	<footer>
+		<!-- Copyright details for your article -->
+		<small>Copyright &copy; 2017. All rights reserved.</small>
+	</footer>
+</article>
+
+</body>
+</html>

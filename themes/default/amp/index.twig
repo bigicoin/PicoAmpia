@@ -1,0 +1,66 @@
+<!doctype html>
+<html amp lang="en">
+<head>
+    <meta charset="utf-8" />
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <title>{% if meta.title %}{{ meta.title }} | {% endif %}{{ site_title }}</title>
+    <link rel="canonical" href="{{ current_page.url }}" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "NewsArticle",
+        "headline": "{% if meta.title %}{{ meta.title }} | {% endif %}{{ site_title }}",
+        "datePublished": "{{ current_page.date_formatted }}",
+        "image": []
+      }
+    </script>
+
+    {% if meta.description %}
+        <meta name="description" content="{{ meta.description|striptags }}">
+    {% endif %}{% if meta.robots %}
+        <meta name="robots" content="{{ meta.robots }}">
+    {% endif %}
+	
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+	<style amp-custom>
+	/* any custom style goes here */
+	body {
+		background-color: white;
+		font-family: sans-serif;
+	}
+	amp-img {
+		background-color: gray;
+		border: 1px solid black;
+	}
+	div.homelink {
+		float: right;
+		width: auto;
+	}
+	div.layout {
+		width: 1200px;
+		max-width: 95%;
+		margin: 0 auto;
+		padding: 20px 10px;
+	}
+	div#footer {
+		margin-top: 50px;
+	}
+	</style>
+</head>
+
+
+<body>
+<div class="layout">
+	<div class="homelink">
+		<a href="{{ "index"|link }}">[ Return to Home ]</a>
+	</div>
+	<div id="content">
+		<div class="inner">
+			{{ content }}
+		</div>
+	</div>
+	<div id="footer">Copyright &copy; 2017. All rights reserved.</div>
+</div> 
+</body>
+</html>
