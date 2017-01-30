@@ -1,6 +1,6 @@
 # PicoAmpia
 
-PicoAmpia is a plugin for Pico CMS that provides support for Google AMP and Facebook Instant Articles.
+PicoAmpia is a plugin for Pico CMS that provides support for Google **AMP** and Facebook **I**nstant **A**rticles.
 
 # Config
 
@@ -19,6 +19,8 @@ $config[ 'PicoAmpia.facebookDefaultStyle' ] = 'default';
 
 You will need to put valid Google AMP HTML as well as valid Facebook Instant Articles markup in your
 themes folder, corresponding to the AMP Root and IA Root config path.
+
+A sample AMP HTML file and an Instant Articles markup file are included in this repository.
 
 For more info on how to write proper markup for AMP and IA, please see the Notes section below.
 
