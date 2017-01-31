@@ -83,7 +83,9 @@ Similar to above, this is the name of the root level addition to your pages' URL
 of the pages. Again, this is also the name of the subdirectory for IA themes.
 
 `PicoAmpia.iaRss`  
-This is the URL to the RSS feed that you will use for Facebook to pull your updated Instant Articles from.
+This is the URL to the RSS feed that you will use for Facebook to pull your updated Instant Articles from. For
+example, in this example the RSS feed will be found at `https://yourdomain.com/facebookiarss`. This is the URL
+you want to provide in the Facebook Page Admin interface where you set up your production or development RSS feed.
 
 `PicoAmpia.facebookPageId`  
 This is your Facebook Page ID of your brand, where you've registered Instant Articles with.
