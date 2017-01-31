@@ -224,7 +224,18 @@ final class PicoAmpia extends AbstractPicoPlugin
 		$files = $this->getFiles($this->contentDir, $this->contentExt, $lastHour); // get all files last modified recently
 		// now get to the proper urls from them
 		$spliceLength = strlen($this->contentDir);
+		$titles = array();
 		foreach ($files as $i => $file) {
+			// we actually need to open those files and get their titles
+			// use the same code as Pico core to parse for headers
+			$rawContent = file_get_contents($file.$this->contentExt);
+			$pattern = "/^(\/(\*)|---)[[:blank:]]*(?:\r)?\n"
+				. "(?:(.*?)(?:\r)?\n)?(?(2)\*\/|---)[[:blank:]]*(?:(?:\r)?\n|$)/s";
+			if (preg_match($pattern, $rawContent, $rawMetaMatches) && isset($rawMetaMatches[3])) {
+				$yamlParser = new \Symfony\Component\Yaml\Parser();
+				$meta = $yamlParser->parse($rawMetaMatches[3]);
+				$titles[$i] = $meta['Title'];
+			}
 			// get urls out of full paths
 			$files[$i] = substr($file, $spliceLength);
 			$parts = explode('/', $files[$i]);
@@ -245,9 +256,9 @@ xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <language>en-us</language>
     <lastBuildDate>'.date('c').'</lastBuildDate>';
     	echo "\n";
-    	foreach ($files as $file) {
+    	foreach ($files as $i => $file) {
     		echo "<item>\n";
-    		echo "<title>".$this->baseUrl.$file."</title>\n";
+    		echo "<title>".$titles[$i]."</title>\n";
     		echo "<link>".$this->baseUrl.$file."</link>\n";
     		echo "<content:encoded>\n<![CDATA[\n".file_get_contents($this->baseUrl.$this->urlRoots['ia'].'/'.$file)."\n]]>\n</content:encoded>\n";
     		echo "</item>\n";
