@@ -172,6 +172,13 @@ final class PicoAmpia extends AbstractPicoPlugin
 			// we don't check for existence of the files, because we don't have access to the themesDir variable.
 			// when using this plugin, the webmaster should ensure they have the proper theme files.
 			$templateName = $this->urlRoots[$this->ampiaMode] . '/' . $templateName;
+			// we need to add some AMP and IA formatted timestamps
+			if (empty($twigVariables['current_page']['time'])) {
+				// if published time is not set, we need to set it. use current.
+				$twigVariables['current_page']['time'] = time();
+			}
+			$twigVariables['current_page']['date_iso8601'] = date('c', $twigVariables['current_page']['time']);
+			$twigVariables['current_page']['date_human'] = date('F jS, g:i A', $twigVariables['current_page']['time']);
 		}
 	}
 
@@ -236,7 +243,7 @@ xmlns:content="http://purl.org/rss/1.0/modules/content/">
       '.$this->siteTitle.'
     </description>
     <language>en-us</language>
-    <lastBuildDate>'.date('r').'</lastBuildDate>';
+    <lastBuildDate>'.date('c').'</lastBuildDate>';
     	echo "\n";
     	foreach ($files as $file) {
     		echo "<item>\n";
